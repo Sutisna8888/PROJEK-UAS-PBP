@@ -23,7 +23,6 @@ router.post("/comment", userComments);
 router.get("/comment/:PostID", getcomment);
 router.delete("/comment/:CommentID", deletComment);
 router.post("/like", userLike);
-router.delete("/like/:LikeID", deletlike)
-
+router.delete("/like/:LikeID", deletlike);
 
 module.exports = router;
