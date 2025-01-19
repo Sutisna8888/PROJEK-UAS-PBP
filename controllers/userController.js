@@ -14,6 +14,7 @@ const getProfile = async (req, res) => {
     res.status(200).json({ message: "data berhasil diambil", profile });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Terjadi kesalahan pada server!" });
   }
 };
 
@@ -33,6 +34,7 @@ const getProfileById = async (req, res) => {
     res.status(200).json({ message: "data berhasil diambil", profile });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Terjadi kesalahan pada server!" });
   }
 };
 
@@ -51,6 +53,7 @@ const userRegister = async (req, res) => {
     res.status(200).json({ message: "Registrasi berhasil" });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Terjadi kesalahan pada server!" });
   }
 };
 
@@ -85,6 +88,7 @@ const userLogin = async (req, res) => {
     res.status(200).json({ message: "Login berhasil", token });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Terjadi kesalahan pada server!" });
   }
 };
 
@@ -94,6 +98,7 @@ const userLogout = async (req, res) => {
     res.status(200).json({ message: "berhasil logout!" });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Terjadi kesalahan pada server!" });
   }
 };
 
@@ -130,6 +135,7 @@ const editUser = async (req, res) => {
     res.status(200).json({ message: "User berhasil diupdate!", userUpdate });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Terjadi kesalahan pada server!" });
   }
 };
 
