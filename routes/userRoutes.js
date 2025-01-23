@@ -1,7 +1,7 @@
 const express = require("express");
 const {
-  getUser,
   getProfile,
+  getProfileById,
   userRegister,
   userLogin,
   buatPost,
@@ -10,19 +10,39 @@ const {
   deletComment,
   userLike,
   deletlike,
+  userLogout,
+  editUser,
+  getPosts,
+  getPostById,
+  deletePost,
+  editPost,
+  userReport,
 } = require("../controllers/userControllers");
+const verifyToken = require("../middlewares/verifyToken");
+const checkUser = require("../middlewares/checkUser");
 
 const router = express.Router();
 
-router.get("/", getUser);
-router.get("/profile/:id", getProfile);
+router.get("/profile", verifyToken, checkUser, getProfile);
+router.get("/profile/:id", verifyToken, checkUser, getProfileById);
 router.post("/register", userRegister);
 router.post("/login", userLogin);
-router.post("/post", buatPost);
-router.post("/comment", userComments);
-router.get("/comment/:PostID", getcomment);
-router.delete("/comment/:CommentID", deletComment);
-router.post("/like", userLike);
-router.delete("/like/:LikeID", deletlike);
+router.put("/user", verifyToken, checkUser, editUser);
+router.delete("/logout", verifyToken, checkUser, userLogout);
+
+// postingan
+router.get("/posts", verifyToken, checkUser, getPosts);
+router.post("/post", verifyToken, checkUser, buatPost);
+router.get("/post/:PostID", verifyToken, checkUser, getPostById);
+router.put("/post/:PostID", verifyToken, checkUser, editPost);
+router.delete("/post/:PostID", verifyToken, checkUser, deletePost);
+router.post("/comment", verifyToken, checkUser, userComments);
+router.get("/comment/:PostID", verifyToken, checkUser, getcomment);
+router.delete("/comment/:CommentID", verifyToken, checkUser, deletComment);
+router.post("/like", verifyToken, checkUser, userLike);
+router.delete("/like/:LikeID", verifyToken, checkUser, deletlike);
+
+// report
+router.post("/report", verifyToken, checkUser, userReport);
 
 module.exports = router;
